@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Patrones repetidos agrupados con @apply para mantener los componentes limpios */
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-bold
+           transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-menta-dark
+           focus-visible:ring-offset-2 focus-visible:ring-offset-fondo-light
+           disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  /* Acción principal: azul marino */
+  .btn-primary {
+    @apply btn bg-marino text-white hover:bg-menta-dark;
+  }
+  /* Acción secundaria: borde marino sobre fondo claro */
+  .btn-secondary {
+    @apply btn border border-marino/30 bg-fondo-light text-marino hover:bg-fondo;
+  }
+  .btn-danger {
+    @apply btn text-alerta hover:bg-alerta-light;
+  }
+  .campo {
+    @apply w-full rounded-lg border border-marino/30 bg-white px-3 py-2 text-sm text-marino
+           focus:border-menta-dark focus:outline-none focus:ring-2 focus:ring-menta/40;
+  }
+  .tarjeta {
+    @apply rounded-xl border border-marino/15 bg-fondo-light p-5;
+  }
+  /* Mensajes de confirmación */
+  .aviso {
+    @apply rounded-lg border-l-4 border-menta bg-menta-light px-4 py-3 text-marino;
+  }
+}
+
+/* Banda decorada con puntos (usa el color del texto, así sirve para cualquier fondo) */
+.banda::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.16;
+  background-image: radial-gradient(circle at 1px 1px, currentColor 1.3px, transparent 0);
+  background-size: 16px 16px;
+}
+
+body {
+  @apply bg-fondo font-sans text-marino antialiased;
+}
